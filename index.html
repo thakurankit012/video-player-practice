@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>video player</title>
+</head>
+<script>
+
+</script>
+<body>
+   <header>
+    <h1>ANKIT VIDEO PLAYER</h1>
+   </header>
+   <section>
+<video src="video.mkv" width="100%" height="355" id="vdo"></video>
+   </section>
+
+   <footer>
+       <button onclick="vplay()" id="play">play</button>
+       <button onclick="vpause()"   id="pause">pause</button>
+       <button  id="ubtn">
+           upload
+       
+       <input type="file" accept=".mp4" id="vupload" onchange="upload()">
+   </button>
+   </footer>
+   <script>
+    function vplay()
+    {
+        var a = document.getElementById("vdo");
+        a.play()
+
+    }
+     function vpause()
+     {
+        var a = document.getElementById("vdo");
+        a.pause();
+     }
+     function upload()
+     {
+        var a = document.getElementById("vupload").value.replace(/.*(\/|\\)/, '');
+        window.alert(a)
+        var b = document.getElementById("vdo");
+        b.src=a;
+     }
+   </script>
+</body>
+</html>
