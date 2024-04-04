@@ -4,47 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>video player</title>
+    <title>Video Player</title>
 </head>
-<script>
-
-</script>
-<body>
+<body class="light"> <!-- Initially set to light mode -->
    <header>
     <h1>ANKIT VIDEO PLAYER</h1>
    </header>
    <section>
-<video src="video.mkv" width="100%" height="355" id="vdo"></video>
+       <video src="video.mkv" width="100%" height="355" id="vdo" controls></video>
    </section>
 
    <footer>
-       <button onclick="vplay()" id="play">play</button>
-       <button onclick="vpause()"   id="pause">pause</button>
-       <button  id="ubtn">
-           upload
-       
-       <input type="file" accept=".mp4" id="vupload" onchange="upload()">
-   </button>
+       <button onclick="vplay()" id="play">Play</button>
+       <button onclick="vpause()" id="pause">Pause</button>
+       <label for="vupload" id="ubtn">Upload</label>
+       <input type="file" accept=".mp4" id="vupload" onchange="upload()" style="display: none;">
+       <button id="mode-toggle" onclick="toggleMode()">Dark Mode</button>
    </footer>
    <script>
-    function vplay()
-    {
-        var a = document.getElementById("vdo");
-        a.play()
-
+    function vplay() {
+        var video = document.getElementById("vdo");
+        video.play();
     }
-     function vpause()
-     {
-        var a = document.getElementById("vdo");
-        a.pause();
-     }
-     function upload()
-     {
-        var a = document.getElementById("vupload").value.replace(/.*(\/|\\)/, '');
-        window.alert(a)
-        var b = document.getElementById("vdo");
-        b.src=a;
-     }
+
+    function vpause() {
+        var video = document.getElementById("vdo");
+        video.pause();
+    }
+
+    function upload() {
+        var fileInput = document.getElementById("vupload");
+        var filename = fileInput.value.replace(/.*(\/|\\)/, '');
+        var video = document.getElementById("vdo");
+        video.src = URL.createObjectURL(fileInput.files[0]);
+        video.load();
+    }
+
+    function toggleMode() {
+        var body = document.body;
+        body.classList.toggle("dark"); // Toggle the dark class on the body
+        var modeToggle = document.getElementById("mode-toggle");
+        if (body.classList.contains("dark")) {
+            modeToggle.textContent = "Light Mode"; // Change button text to "Light Mode" when in dark mode
+        } else {
+            modeToggle.textContent = "Dark Mode"; // Change button text to "Dark Mode" when in light mode
+        }
+    }
    </script>
 </body>
 </html>
